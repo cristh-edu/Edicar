@@ -1,0 +1,24 @@
+{
+  "edicarApp": {
+    "modelo": {
+      "home": {
+        "title": "Modelos",
+        "createLabel": "Criar novo Modelo",
+        "createOrEditLabel": "Criar ou editar Modelo",
+        "notFound": "Nenhum Modelo encontrado"
+      },
+      "created": "Um novo Modelo foi criado com o identificador {{ param }}",
+      "updated": "Um Modelo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Modelo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Modelo {{ id }} - {{ nmModelo }}?"
+      },
+      "detail": {
+        "title": "Modelo"
+      },
+      "nmModelo": "Nome Modelo",
+      "veiculo": "Veiculo",
+      "marca": "Marca"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-veiculo-heading" jhiTranslate="edicarApp.veiculo.home.createOrEditLabel">Create or edit a Veiculo</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.veiculo.placa" for="field_placa">Placa</label>
+                    <input type="text" class="form-control" name="placa" id="field_placa"
+                           formControlName="placa"/>
+                    <div *ngIf="editForm.get('placa')!.invalid && (editForm.get('placa')!.dirty || editForm.get('placa')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('placa')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.veiculo.cor" for="field_cor">Cor</label>
+                    <input type="text" class="form-control" name="cor" id="field_cor"
+                           formControlName="cor"/>
+                    <div *ngIf="editForm.get('cor')!.invalid && (editForm.get('cor')!.dirty || editForm.get('cor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.veiculo.ano" for="field_ano">Ano</label>
+                    <input type="number" class="form-control" name="ano" id="field_ano"
+                           formControlName="ano"/>
+                    <div *ngIf="editForm.get('ano')!.invalid && (editForm.get('ano')!.dirty || editForm.get('ano')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1900 }">
+                            This field should be at least 1900.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 2100 }">
+                            This field cannot be more than 2100.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ano')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.veiculo.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                    <div *ngIf="editForm.get('valor')!.invalid && (editForm.get('valor')!.dirty || editForm.get('valor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.veiculo.modelo" for="field_modelo">Modelo</label>
+                    <select class="form-control" id="field_modelo" name="modelo" formControlName="modelo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="modeloOption.id === editForm.get('modelo')!.value?.id ? editForm.get('modelo')!.value : modeloOption" *ngFor="let modeloOption of modelos; trackBy: trackById">{{ modeloOption.nmModelo }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

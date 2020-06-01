@@ -1,0 +1,40 @@
+{
+  "name": "Modelo",
+  "fields": [
+    {
+      "fieldName": "nmModelo",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "required"
+      ],
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "veiculo",
+      "otherEntityRelationshipName": "modelo",
+      "relationshipName": "veiculo"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "marca",
+      "otherEntityRelationshipName": "modelo",
+      "relationshipName": "marca",
+      "otherEntityField": "nmMarca"
+    }
+  ],
+  "changelogDate": "20200531170739",
+  "entityTableName": "modelo",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

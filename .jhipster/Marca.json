@@ -1,0 +1,33 @@
+{
+  "name": "Marca",
+  "fields": [
+    {
+      "fieldName": "nmMarca",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "required"
+      ],
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "modelo",
+      "otherEntityRelationshipName": "marca",
+      "relationshipName": "modelo"
+    }
+  ],
+  "changelogDate": "20200531170639",
+  "entityTableName": "marca",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

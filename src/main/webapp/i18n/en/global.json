@@ -7,6 +7,12 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "marca": "Marca",
+        "modelo": "Modelo",
+        "veiculo": "Veiculo",
+        "compra": "Compra",
+        "venda": "Venda",
+        "cliente": "Cliente",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

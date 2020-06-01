@@ -5,15 +5,12 @@
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
-    "question": "If you have any question on JHipster:",
+    "question": "These are the links that we use:",
     "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @jhipster on Twitter"
-    },
-    "like": "If you like JHipster, don't forget to give us a star on",
-    "github": "GitHub"
+      "detranVeiculos": "DETRAN-MG Homepage",
+      "situacaoVeiculos": "DETRAN-MG See Vehicle Situation",
+      "ipva": "Issue IPVA Collection Guide",
+      "listo": "Card machine"
+    }
   }
 }

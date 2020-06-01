@@ -1,0 +1,84 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="edicarApp.veiculo.home.title">Veiculos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-veiculo" [routerLink]="['/veiculo/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="edicarApp.veiculo.home.createLabel">
+            Create a new Veiculo
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="veiculos?.length === 0">
+        <span jhiTranslate="edicarApp.veiculo.home.notFound">No veiculos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="veiculos && veiculos.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modelo.nmModelo"><span jhiTranslate="edicarApp.veiculo.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="placa"><span jhiTranslate="edicarApp.veiculo.placa">Placa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cor"><span jhiTranslate="edicarApp.veiculo.cor">Cor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ano"><span jhiTranslate="edicarApp.veiculo.ano">Ano</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="valor"><span jhiTranslate="edicarApp.veiculo.valor">Valor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let veiculo of veiculos ;trackBy: trackId">
+                    <td><a [routerLink]="['/veiculo', veiculo.id, 'view']">{{ veiculo.id }}</a></td>
+                    <td>
+                        <div *ngIf="veiculo.modelo">
+                            <a [routerLink]="['/modelo', veiculo.modelo?.id, 'view']" >{{ veiculo.modelo?.nmModelo }}</a>
+                        </div>
+                    </td>
+
+                    <td>{{ veiculo.placa }}</td>
+                    <td>{{ veiculo.cor }}</td>
+                    <td>{{ veiculo.ano }}</td>
+                    <td>{{ veiculo.valor }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/veiculo', veiculo.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/veiculo', veiculo.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(veiculo)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="veiculos && veiculos.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

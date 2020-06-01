@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="compra">
+            <h2><span jhiTranslate="edicarApp.compra.detail.title">Compra</span> {{ compra.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="edicarApp.compra.dtCompra">Dt Compra</span></dt>
+                <dd>
+                    <span>{{ compra.dtCompra }}</span>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.compra.valor">Valor</span></dt>
+                <dd>
+                    <span>{{ compra.valor }}</span>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.compra.veiculoCompra">Veiculo Compra</span></dt>
+                <dd>
+                    <div *ngIf="compra.veiculoCompra">
+                        <a [routerLink]="['/veiculo', compra.veiculoCompra?.id, 'view']">{{ compra.veiculoCompra?.placa }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.compra.veiculoTroca">Veiculo Troca</span></dt>
+                <dd>
+                    <div *ngIf="compra.veiculoTroca">
+                        <a [routerLink]="['/veiculo', compra.veiculoTroca?.id, 'view']">{{ compra.veiculoTroca?.placa }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.compra.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="compra.cliente">
+                        <a [routerLink]="['/cliente', compra.cliente?.id, 'view']">{{ compra.cliente?.nmCliente }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/compra', compra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
