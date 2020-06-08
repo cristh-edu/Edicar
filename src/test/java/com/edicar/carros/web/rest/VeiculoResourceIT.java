@@ -30,8 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class VeiculoResourceIT {
 
-    private static final String DEFAULT_PLACA = "AAAAAAAAAA";
-    private static final String UPDATED_PLACA = "BBBBBBBBBB";
+    private static final String DEFAULT_PLACA = "AAAAAAAA";
+    private static final String UPDATED_PLACA = "BBBBBBBB";
 
     private static final String DEFAULT_COR = "AAAAAAAAAA";
     private static final String UPDATED_COR = "BBBBBBBBBB";

@@ -11,7 +11,7 @@
       "updated": "Um Veiculo foi atualizado com o identificador {{ param }}",
       "deleted": "Um Veiculo foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Veiculo {{ id }} - {{placa}}?"
+        "question": "Tem certeza de que deseja excluir Veiculo {{ id }}?"
       },
       "detail": {
         "title": "Veiculo"
@@ -20,6 +20,7 @@
       "cor": "Cor",
       "ano": "Ano",
       "valor": "Valor",
+      "despesa": "Despesa",
       "modelo": "Modelo"
     }
   }

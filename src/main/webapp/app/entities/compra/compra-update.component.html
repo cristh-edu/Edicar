@@ -37,10 +37,6 @@
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('valor')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
-                            This field should be at least 0.
-                        </small>
-                        <small class="form-text text-danger"
                             [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>

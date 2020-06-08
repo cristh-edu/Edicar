@@ -31,6 +31,11 @@ public class Cliente implements Serializable {
     @Column(name = "cpf", length = 14, nullable = false)
     private String cpf;
 
+    @NotNull
+    @Size(min = 15, max = 15)
+    @Column(name = "telefone", length = 15, nullable = false)
+    private String telefone;
+
     @OneToMany(mappedBy = "cliente")
     private Set<Compra> compras = new HashSet<>();
 
@@ -70,6 +75,19 @@ public class Cliente implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public Cliente telefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public Set<Compra> getCompras() {
@@ -146,6 +164,7 @@ public class Cliente implements Serializable {
             "id=" + getId() +
             ", nmCliente='" + getNmCliente() + "'" +
             ", cpf='" + getCpf() + "'" +
+            ", telefone='" + getTelefone() + "'" +
             "}";
     }
 }

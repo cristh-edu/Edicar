@@ -1,0 +1,50 @@
+{
+  "name": "Despesa",
+  "fields": [
+    {
+      "fieldName": "dtDespesa",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nmDespesa",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "minlength"
+      ],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required",
+        "min"
+      ],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "veiculo",
+      "otherEntityRelationshipName": "despesa",
+      "relationshipName": "veiculo",
+      "otherEntityField": "placa"
+    }
+  ],
+  "changelogDate": "20200601125503",
+  "entityTableName": "despesa",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

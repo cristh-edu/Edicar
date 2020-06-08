@@ -16,8 +16,9 @@
       "detail": {
         "title": "Cliente"
       },
-      "nmCliente": "Nm Cliente",
+      "nmCliente": "Name Cliente",
       "cpf": "Cpf",
+      "telefone": "Telefone",
       "compra": "Compra",
       "venda": "Venda"
     }

@@ -36,6 +36,9 @@ public class ClienteResourceIT {
     private static final String DEFAULT_CPF = "AAAAAAAAAAAAAA";
     private static final String UPDATED_CPF = "BBBBBBBBBBBBBB";
 
+    private static final String DEFAULT_TELEFONE = "AAAAAAAAAAAAAAA";
+    private static final String UPDATED_TELEFONE = "BBBBBBBBBBBBBBB";
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -59,7 +62,8 @@ public class ClienteResourceIT {
     public static Cliente createEntity(EntityManager em) {
         Cliente cliente = new Cliente()
             .nmCliente(DEFAULT_NM_CLIENTE)
-            .cpf(DEFAULT_CPF);
+            .cpf(DEFAULT_CPF)
+            .telefone(DEFAULT_TELEFONE);
         return cliente;
     }
     /**
@@ -71,7 +75,8 @@ public class ClienteResourceIT {
     public static Cliente createUpdatedEntity(EntityManager em) {
         Cliente cliente = new Cliente()
             .nmCliente(UPDATED_NM_CLIENTE)
-            .cpf(UPDATED_CPF);
+            .cpf(UPDATED_CPF)
+            .telefone(UPDATED_TELEFONE);
         return cliente;
     }
 
@@ -96,6 +101,7 @@ public class ClienteResourceIT {
         Cliente testCliente = clienteList.get(clienteList.size() - 1);
         assertThat(testCliente.getNmCliente()).isEqualTo(DEFAULT_NM_CLIENTE);
         assertThat(testCliente.getCpf()).isEqualTo(DEFAULT_CPF);
+        assertThat(testCliente.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
     }
 
     @Test
@@ -158,6 +164,25 @@ public class ClienteResourceIT {
 
     @Test
     @Transactional
+    public void checkTelefoneIsRequired() throws Exception {
+        int databaseSizeBeforeTest = clienteRepository.findAll().size();
+        // set the field null
+        cliente.setTelefone(null);
+
+        // Create the Cliente, which fails.
+
+
+        restClienteMockMvc.perform(post("/api/clientes")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(cliente)))
+            .andExpect(status().isBadRequest());
+
+        List<Cliente> clienteList = clienteRepository.findAll();
+        assertThat(clienteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllClientes() throws Exception {
         // Initialize the database
         clienteRepository.saveAndFlush(cliente);
@@ -168,7 +193,8 @@ public class ClienteResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cliente.getId().intValue())))
             .andExpect(jsonPath("$.[*].nmCliente").value(hasItem(DEFAULT_NM_CLIENTE)))
-            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF)));
+            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF)))
+            .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)));
     }
     
     @Test
@@ -183,7 +209,8 @@ public class ClienteResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(cliente.getId().intValue()))
             .andExpect(jsonPath("$.nmCliente").value(DEFAULT_NM_CLIENTE))
-            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF));
+            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF))
+            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE));
     }
     @Test
     @Transactional
@@ -207,7 +234,8 @@ public class ClienteResourceIT {
         em.detach(updatedCliente);
         updatedCliente
             .nmCliente(UPDATED_NM_CLIENTE)
-            .cpf(UPDATED_CPF);
+            .cpf(UPDATED_CPF)
+            .telefone(UPDATED_TELEFONE);
 
         restClienteMockMvc.perform(put("/api/clientes")
             .contentType(MediaType.APPLICATION_JSON)
@@ -220,6 +248,7 @@ public class ClienteResourceIT {
         Cliente testCliente = clienteList.get(clienteList.size() - 1);
         assertThat(testCliente.getNmCliente()).isEqualTo(UPDATED_NM_CLIENTE);
         assertThat(testCliente.getCpf()).isEqualTo(UPDATED_CPF);
+        assertThat(testCliente.getTelefone()).isEqualTo(UPDATED_TELEFONE);
     }
 
     @Test

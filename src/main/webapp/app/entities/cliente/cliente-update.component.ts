@@ -19,6 +19,7 @@ export class ClienteUpdateComponent implements OnInit {
     id: [],
     nmCliente: [null, [Validators.required, Validators.minLength(3)]],
     cpf: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+    telefone: [null, [Validators.required, Validators.minLength(15), Validators.maxLength(15)]],
   });
 
   constructor(protected clienteService: ClienteService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -34,6 +35,7 @@ export class ClienteUpdateComponent implements OnInit {
       id: cliente.id,
       nmCliente: cliente.nmCliente,
       cpf: cliente.cpf,
+      telefone: cliente.telefone,
     });
   }
 
@@ -57,6 +59,7 @@ export class ClienteUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nmCliente: this.editForm.get(['nmCliente'])!.value,
       cpf: this.editForm.get(['cpf'])!.value,
+      telefone: this.editForm.get(['telefone'])!.value,
     };
   }
 

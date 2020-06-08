@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Veiculo.
@@ -21,10 +23,12 @@ public class Veiculo implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "placa", nullable = false)
+    @Size(min = 8, max = 8)
+    @Column(name = "placa", length = 8, nullable = false)
     private String placa;
 
     @NotNull
+    @Size(min = 3)
     @Column(name = "cor", nullable = false)
     private String cor;
 
@@ -38,6 +42,9 @@ public class Veiculo implements Serializable {
     @Min(value = 0L)
     @Column(name = "valor", nullable = false)
     private Long valor;
+
+    @OneToMany(mappedBy = "veiculo")
+    private Set<Despesa> despesas = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "veiculos", allowSetters = true)
@@ -102,6 +109,31 @@ public class Veiculo implements Serializable {
 
     public void setValor(Long valor) {
         this.valor = valor;
+    }
+
+    public Set<Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public Veiculo despesas(Set<Despesa> despesas) {
+        this.despesas = despesas;
+        return this;
+    }
+
+    public Veiculo addDespesa(Despesa despesa) {
+        this.despesas.add(despesa);
+        despesa.setVeiculo(this);
+        return this;
+    }
+
+    public Veiculo removeDespesa(Despesa despesa) {
+        this.despesas.remove(despesa);
+        despesa.setVeiculo(null);
+        return this;
+    }
+
+    public void setDespesas(Set<Despesa> despesas) {
+        this.despesas = despesas;
     }
 
     public Modelo getModelo() {

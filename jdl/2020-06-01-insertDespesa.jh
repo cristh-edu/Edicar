@@ -1,0 +1,75 @@
+entity Marca {
+	nmMarca String minlength(3) required
+}
+
+entity Modelo {
+	nmModelo String minlength(3) required
+}
+
+entity Veiculo {
+	placa String required minlength(8) maxlength(8),
+	cor String required minlength(3),
+	ano Integer min(1900) max(2100) required,
+    valor Long min(0) required
+}
+
+entity Compra {
+	dtCompra LocalDate required,
+	valor Long required
+}
+
+entity Venda {
+	dtCompra LocalDate required,
+	valor Long required
+}
+
+entity Cliente {
+	nmCliente String required minlength(3),
+    cpf String required minlength(14) maxlength(14),
+    telefone String required minlength(15) maxlength(15)
+}
+
+entity Despesa{
+	dtDespesa LocalDate required,
+    nmDespesa String required minlength(3),
+    valor Long required min(0)
+}
+
+relationship OneToOne {
+	Compra{veiculoCompra(placa)} to Veiculo
+}
+
+relationship OneToOne {
+	Compra{veiculoTroca(placa)} to Veiculo
+}
+
+relationship OneToOne {
+	Venda{veiculoVenda(placa)} to Veiculo
+}
+
+relationship OneToOne {
+	Venda{veiculoTroca(placa)} to Veiculo
+}
+
+relationship OneToMany {
+	Marca to Modelo{marca(nmMarca)}
+}
+
+relationship OneToMany {
+	Modelo to Veiculo{modelo(nmModelo)}
+}
+
+relationship OneToMany {
+	Cliente to Compra{cliente(nmCliente)}
+}
+
+relationship OneToMany {
+	Cliente to Venda{cliente(nmCliente)}
+}
+
+relationship OneToMany {
+	Veiculo to Despesa{veiculo(placa)}
+}
+
+paginate Marca, Modelo, Veiculo, Compra, Venda, Despesa with pagination
+service all with serviceImpl

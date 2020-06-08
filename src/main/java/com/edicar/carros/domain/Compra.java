@@ -26,7 +26,6 @@ public class Compra implements Serializable {
     private LocalDate dtCompra;
 
     @NotNull
-    @Min(value = 0L)
     @Column(name = "valor", nullable = false)
     private Long valor;
 

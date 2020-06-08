@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="edicarApp.cliente.cpf" for="field_cpf">Cpf</label>
                     <input type="text" class="form-control" name="cpf" id="field_cpf"
-                           formControlName="cpf"/>
+                           formControlName="cpf" mask="000.000.000-00" />
                     <div *ngIf="editForm.get('cpf')!.invalid && (editForm.get('cpf')!.dirty || editForm.get('cpf')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('cpf')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -43,6 +43,26 @@
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('cpf')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 14 }">
                         This field cannot be longer than 14 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.cliente.telefone" for="field_telefone">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" id="field_telefone"
+                           formControlName="telefone" mask="(00) 0000-0000" />
+                    <div *ngIf="editForm.get('telefone')!.invalid && (editForm.get('telefone')!.dirty || editForm.get('telefone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefone')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefone')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 15 }">
+                        This field is required to be at least 15 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefone')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
                         </small>
                     </div>
                 </div>

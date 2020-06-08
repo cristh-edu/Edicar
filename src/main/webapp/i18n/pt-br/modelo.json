@@ -11,12 +11,12 @@
       "updated": "Um Modelo foi atualizado com o identificador {{ param }}",
       "deleted": "Um Modelo foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Modelo {{ id }} - {{ nmModelo }}?"
+        "question": "Tem certeza de que deseja excluir Modelo {{ id }}?"
       },
       "detail": {
         "title": "Modelo"
       },
-      "nmModelo": "Nome Modelo",
+      "nmModelo": "Nm Modelo",
       "veiculo": "Veiculo",
       "marca": "Marca"
     }

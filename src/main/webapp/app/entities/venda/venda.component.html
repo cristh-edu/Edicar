@@ -24,10 +24,10 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="dtCompra"><span jhiTranslate="edicarApp.venda.dtCompra">Dt Compra</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cliente.nmCliente"><span jhiTranslate="edicarApp.venda.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="valor"><span jhiTranslate="edicarApp.venda.valor">Valor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="veiculoVenda.placa"><span jhiTranslate="edicarApp.venda.veiculoVenda">Veiculo Venda</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="veiculoTroca.placa"><span jhiTranslate="edicarApp.venda.veiculoTroca">Veiculo Troca</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="valor"><span jhiTranslate="edicarApp.venda.valor">Valor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cliente.nmCliente"><span jhiTranslate="edicarApp.venda.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,11 +35,7 @@
                 <tr *ngFor="let venda of vendas ;trackBy: trackId">
                     <td><a [routerLink]="['/venda', venda.id, 'view']">{{ venda.id }}</a></td>
                     <td>{{ venda.dtCompra | date:'mediumDate' }}</td>
-                    <td>
-                        <div *ngIf="venda.cliente">
-                            <a [routerLink]="['/cliente', venda.cliente?.id, 'view']" >{{ venda.cliente?.nmCliente }}</a>
-                        </div>
-                    </td>
+                    <td>{{ venda.valor }}</td>
                     <td>
                         <div *ngIf="venda.veiculoVenda">
                             <a [routerLink]="['/veiculo', venda.veiculoVenda?.id, 'view']" >{{ venda.veiculoVenda?.placa }}</a>
@@ -50,7 +46,11 @@
                             <a [routerLink]="['/veiculo', venda.veiculoTroca?.id, 'view']" >{{ venda.veiculoTroca?.placa }}</a>
                         </div>
                     </td>
-                    <td>{{ venda.valor }}</td>
+                    <td>
+                        <div *ngIf="venda.cliente">
+                            <a [routerLink]="['/cliente', venda.cliente?.id, 'view']" >{{ venda.cliente?.nmCliente }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

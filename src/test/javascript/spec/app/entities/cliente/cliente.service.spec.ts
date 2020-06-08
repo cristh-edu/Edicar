@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ClienteService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Cliente(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Cliente(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -56,6 +56,7 @@ describe('Service Tests', () => {
           {
             nmCliente: 'BBBBBB',
             cpf: 'BBBBBB',
+            telefone: 'BBBBBB',
           },
           elemDefault
         );
@@ -74,6 +75,7 @@ describe('Service Tests', () => {
           {
             nmCliente: 'BBBBBB',
             cpf: 'BBBBBB',
+            telefone: 'BBBBBB',
           },
           elemDefault
         );

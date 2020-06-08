@@ -1,3 +1,4 @@
+import { IDespesa } from 'app/shared/model/despesa.model';
 import { IModelo } from 'app/shared/model/modelo.model';
 
 export interface IVeiculo {
@@ -6,6 +7,7 @@ export interface IVeiculo {
   cor?: string;
   ano?: number;
   valor?: number;
+  despesas?: IDespesa[];
   modelo?: IModelo;
 }
 
@@ -16,6 +18,7 @@ export class Veiculo implements IVeiculo {
     public cor?: string,
     public ano?: number,
     public valor?: number,
+    public despesas?: IDespesa[],
     public modelo?: IModelo
   ) {}
 }

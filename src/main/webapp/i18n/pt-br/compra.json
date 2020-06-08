@@ -16,10 +16,10 @@
       "detail": {
         "title": "Compra"
       },
-      "dtCompra": "Data da Compra",
+      "dtCompra": "Dt Compra",
       "valor": "Valor",
-      "veiculoCompra": "Veiculo Comprado",
-      "veiculoTroca": "Veiculo Trocado",
+      "veiculoCompra": "Veiculo Compra",
+      "veiculoTroca": "Veiculo Troca",
       "cliente": "Cliente"
     }
   }

@@ -35,8 +35,8 @@ public class VendaResourceIT {
     private static final LocalDate DEFAULT_DT_COMPRA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DT_COMPRA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Long DEFAULT_VALOR = 0L;
-    private static final Long UPDATED_VALOR = 1L;
+    private static final Long DEFAULT_VALOR = 1L;
+    private static final Long UPDATED_VALOR = 2L;
 
     @Autowired
     private VendaRepository vendaRepository;

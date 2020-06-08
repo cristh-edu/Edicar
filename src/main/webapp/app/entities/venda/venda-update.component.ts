@@ -29,7 +29,7 @@ export class VendaUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     dtCompra: [null, [Validators.required]],
-    valor: [null, [Validators.required, Validators.min(0)]],
+    valor: [null, [Validators.required]],
     veiculoVenda: [],
     veiculoTroca: [],
     cliente: [],

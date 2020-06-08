@@ -23,27 +23,26 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="modelo.nmModelo"><span jhiTranslate="edicarApp.veiculo.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="placa"><span jhiTranslate="edicarApp.veiculo.placa">Placa</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cor"><span jhiTranslate="edicarApp.veiculo.cor">Cor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="ano"><span jhiTranslate="edicarApp.veiculo.ano">Ano</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="valor"><span jhiTranslate="edicarApp.veiculo.valor">Valor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modelo.nmModelo"><span jhiTranslate="edicarApp.veiculo.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let veiculo of veiculos ;trackBy: trackId">
                     <td><a [routerLink]="['/veiculo', veiculo.id, 'view']">{{ veiculo.id }}</a></td>
+                    <td>{{ veiculo.placa }}</td>
+                    <td>{{ veiculo.cor }}</td>
+                    <td>{{ veiculo.ano }}</td>
+                    <td>{{ veiculo.valor }}</td>
                     <td>
                         <div *ngIf="veiculo.modelo">
                             <a [routerLink]="['/modelo', veiculo.modelo?.id, 'view']" >{{ veiculo.modelo?.nmModelo }}</a>
                         </div>
                     </td>
-
-                    <td>{{ veiculo.placa }}</td>
-                    <td>{{ veiculo.cor }}</td>
-                    <td>{{ veiculo.ano }}</td>
-                    <td>{{ veiculo.valor }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

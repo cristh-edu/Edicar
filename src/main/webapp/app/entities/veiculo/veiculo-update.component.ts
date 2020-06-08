@@ -20,8 +20,8 @@ export class VeiculoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    placa: [null, [Validators.required]],
-    cor: [null, [Validators.required]],
+    placa: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+    cor: [null, [Validators.required, Validators.minLength(3)]],
     ano: [null, [Validators.required, Validators.min(1900), Validators.max(2100)]],
     valor: [null, [Validators.required, Validators.min(0)]],
     modelo: [],

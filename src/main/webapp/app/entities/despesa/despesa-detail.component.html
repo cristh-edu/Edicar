@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="despesa">
+            <h2><span jhiTranslate="edicarApp.despesa.detail.title">Despesa</span> {{ despesa.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="edicarApp.despesa.dtDespesa">Dt Despesa</span></dt>
+                <dd>
+                    <span>{{ despesa.dtDespesa }}</span>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.despesa.nmDespesa">Nm Despesa</span></dt>
+                <dd>
+                    <span>{{ despesa.nmDespesa }}</span>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.despesa.valor">Valor</span></dt>
+                <dd>
+                    <span>{{ despesa.valor }}</span>
+                </dd>
+                <dt><span jhiTranslate="edicarApp.despesa.veiculo">Veiculo</span></dt>
+                <dd>
+                    <div *ngIf="despesa.veiculo">
+                        <a [routerLink]="['/veiculo', despesa.veiculo?.id, 'view']">{{ despesa.veiculo?.placa }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/despesa', despesa.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

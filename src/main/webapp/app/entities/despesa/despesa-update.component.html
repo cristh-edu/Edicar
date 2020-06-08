@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-despesa-heading" jhiTranslate="edicarApp.despesa.home.createOrEditLabel">Create or edit a Despesa</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.despesa.dtDespesa" for="field_dtDespesa">Dt Despesa</label>
+                    <div class="input-group">
+                        <input id="field_dtDespesa" type="text" class="form-control" name="dtDespesa" ngbDatepicker #dtDespesaDp="ngbDatepicker" formControlName="dtDespesa"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dtDespesaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dtDespesa')!.invalid && (editForm.get('dtDespesa')!.dirty || editForm.get('dtDespesa')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dtDespesa')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.despesa.nmDespesa" for="field_nmDespesa">Nm Despesa</label>
+                    <input type="text" class="form-control" name="nmDespesa" id="field_nmDespesa"
+                           formControlName="nmDespesa"/>
+                    <div *ngIf="editForm.get('nmDespesa')!.invalid && (editForm.get('nmDespesa')!.dirty || editForm.get('nmDespesa')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nmDespesa')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nmDespesa')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.despesa.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                    <div *ngIf="editForm.get('valor')!.invalid && (editForm.get('valor')!.dirty || editForm.get('valor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="edicarApp.despesa.veiculo" for="field_veiculo">Veiculo</label>
+                    <select class="form-control" id="field_veiculo" name="veiculo" formControlName="veiculo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="veiculoOption.id === editForm.get('veiculo')!.value?.id ? editForm.get('veiculo')!.value : veiculoOption" *ngFor="let veiculoOption of veiculos; trackBy: trackById">{{ veiculoOption.placa }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,15 +5,21 @@
       "fieldName": "placa",
       "fieldType": "String",
       "fieldValidateRules": [
-        "required"
-      ]
+        "required",
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "8",
+      "fieldValidateRulesMaxlength": "8"
     },
     {
       "fieldName": "cor",
       "fieldType": "String",
       "fieldValidateRules": [
-        "required"
-      ]
+        "required",
+        "minlength"
+      ],
+      "fieldValidateRulesMinlength": "3"
     },
     {
       "fieldName": "ano",
@@ -37,6 +43,12 @@
     }
   ],
   "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "despesa",
+      "otherEntityRelationshipName": "veiculo",
+      "relationshipName": "despesa"
+    },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "modelo",

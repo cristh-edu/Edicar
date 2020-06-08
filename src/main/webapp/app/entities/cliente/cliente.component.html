@@ -25,6 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="edicarApp.cliente.nmCliente">Nm Cliente</span></th>
                     <th scope="col" ><span jhiTranslate="edicarApp.cliente.cpf">Cpf</span></th>
+                    <th scope="col" ><span jhiTranslate="edicarApp.cliente.telefone">Telefone</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                     <td><a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a></td>
                     <td>{{ cliente.nmCliente }}</td>
                     <td>{{ cliente.cpf }}</td>
+                    <td>{{ cliente.telefone }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

@@ -20,6 +20,17 @@
       ],
       "fieldValidateRulesMinlength": "14",
       "fieldValidateRulesMaxlength": "14"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "15",
+      "fieldValidateRulesMaxlength": "15"
     }
   ],
   "relationships": [
